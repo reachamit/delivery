@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyD9wJfG8jUZpC_dEA-V5k_KUj06OZXbp7A</string>
+	<key>GCM_SENDER_ID</key>
+	<string>562639468353</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.orderherfood.delivery</string>
+	<key>PROJECT_ID</key>
+	<string>orderherfood-delivery</string>
+	<key>STORAGE_BUCKET</key>
+	<string>orderherfood-delivery.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:562639468353:ios:a6d790f9fcf8011bc8d3c0</string>
+	<key>DATABASE_URL</key>
+	<string>https://orderherfood-delivery-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
