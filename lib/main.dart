@@ -11,6 +11,9 @@ import 'screens/attandance.dart';
 import 'screens/onboard_screen/onboarding_screen.dart';
 import 'screens/order_screen/neworder_dialog.dart';
 import 'screens/sign_in.dart';
+
+//validate here
+
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
