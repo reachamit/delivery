@@ -27,6 +27,7 @@ class InProgressOrders extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         backgroundColor: Colors.red,
         title: Text("In-Progress Orders"),
       ),
       body: ListView.builder(

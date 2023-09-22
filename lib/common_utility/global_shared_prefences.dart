@@ -45,21 +45,32 @@ class AppSharedPreferences {
 class SharedPrefsValues {
 
   static String name = '';
+  static String imagePath='assets/images/delivery.png';
+  static String Password='';
   static String user_gender = '';
   static String mobile = '';
   static String email = '';
   static String dateOfBirth = '';
-  static String vehicle_number = '';
-  static String licence_number = '';
-  static String licence_validupto = '';
+  static String Address='';
+
   static String deliveryPersonCode="";
   static String deliveryPersonKey='';
   static String deliveryLoginStatus = '0';
-  static String Address='';
-  static String Password='';
-  static String imagePath='assets/images/delivery.png';
+  static String deliveryLoginStart='';
+  
+  
   static String otp='#12#';
   static String isAccountActivated='N';
-  static String deliveryLoginStart='';
+
+  static String vehicle_type='Bike';
+  static String vehicle_number = '';
+  static String licence_number = '';
+  static String insurance_number='';
+
+  static DateTime? licence_validupto = null;
+  static DateTime? registration_date = null;
+  static DateTime? insurance_validupto = null;
+ 
+  
 
 }

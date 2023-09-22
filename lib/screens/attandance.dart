@@ -87,6 +87,7 @@ class _AttandanceState extends State<Attandance> {
     //   }
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         //title: Text('Mark Your Presence'),
         title: Text(
           SharedPrefsValues.deliveryPersonCode,
@@ -94,18 +95,18 @@ class _AttandanceState extends State<Attandance> {
               fontWeight: FontWeight.bold, fontSize: 18, color: textColor),
         ),
         centerTitle: true,
-        backgroundColor: backgroundColor,
+       // backgroundColor: backgroundColor,
         actions: <Widget>[
 
       Padding(
       padding: const EdgeInsets.all(8.0),
       child: loginState
-          ? Row(
+          ? const Row(
         children: [
           Icon(
             Icons.circle,
             color: Colors.green,
-            size: 12,
+            size: 14,
           ),
           SizedBox(width: 8),
           Text(
@@ -117,18 +118,18 @@ class _AttandanceState extends State<Attandance> {
           ),
         ],
       )
-          : Row(
+          : const Row(
         children: [
           Icon(
             Icons.circle,
-            color: Colors.red,
+            color: Colors.black,
             size: 12,
           ),
           SizedBox(width: 8),
           Text(
             "Offline",
             style: TextStyle(
-              color: Colors.red,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -137,11 +138,15 @@ class _AttandanceState extends State<Attandance> {
     ),
 
           badges.Badge(
+          
             onTap: () {},
             position: badges.BadgePosition.topEnd(top: -8, end: 8),
-            showBadge: true,
+            showBadge: true,//notificationCount > 0,
             ignorePointer: false,
-            badgeContent: Text(notificationCount.toString()),
+            badgeContent: Text(
+              notificationCount.toString(),
+              style: TextStyle(color: Colors.white),
+            ),
             child: IconButton(
             icon:Icon(Icons.notifications),
             onPressed: () {
@@ -153,7 +158,7 @@ class _AttandanceState extends State<Attandance> {
           )
         ],
       ),
-      drawer: NavBar(),
+      drawer: const NavBar(),
       body: Column(
         children: [
           Container(

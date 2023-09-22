@@ -1,215 +1,193 @@
-
-import 'package:delivery/common_utility/date_form_field.dart';
+import 'package:delivery/common_utility/global_shared_prefences.dart';
 import 'package:delivery/screens/attandance.dart';
+import 'package:delivery/screens/vehicle_details_screen/register_vehicle.dart';
 import 'package:flutter/material.dart';
- import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class VehicleRegistrationForm extends StatefulWidget {
-  @override
-  _VehicleRegistrationFormState createState() => _VehicleRegistrationFormState();
-}
+// ignore: must_be_immutable
+class VehicleRegistrationForm extends StatelessWidget {
 
-class _VehicleRegistrationFormState extends State<VehicleRegistrationForm> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  late TextEditingController _registrationDateController;
-  late TextEditingController _insuranceUptoDateController;
-  DateTime? selectedDate;
-  String? selectedVehicleType;
-  String vehicleType = '';
-  String vehicleRegistrationNumber = '';
-  DateTime? vehicleRegistrationDate;
-  String drivingLicenseNumber = '';
-  String vehicleInsuranceNumber = '';
-  DateTime? vehicleInsuranceValidUntil;
-  var _dateMaskFormatter = MaskTextInputFormatter(mask: '##-##-####', filter: {"#": RegExp(r'[0-9]')});
-
-  // bool validateIndianVehicleRegistrationNumber(String registrationNumber) {
-  //   final pattern = r'^[A-Z]{2}\s?[0-9]{2}\s?[A-Z]{2}\s?[0-9]{4}$';
-  //
-  //   final regex = RegExp(pattern);
-  //   return regex.hasMatch(registrationNumber);
-  // }
-
-  @override
-  void initState() {
-    super.initState();
-    _registrationDateController = TextEditingController();
-    _insuranceUptoDateController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _registrationDateController.dispose(); // Dispose of the controller when the widget is disposed
-    _insuranceUptoDateController.dispose(); // Dispose of the controller when the widget is disposed
-    super.dispose();
-  }
+   String vehicleType= SharedPrefsValues.vehicle_type;
+   String vehicleRegistrationNumber=SharedPrefsValues.vehicle_number;
+   DateTime? vehicleRegistrationDate = SharedPrefsValues.registration_date ;
+   String drivingLicenseNumber = SharedPrefsValues.licence_number;
+   String vehicleInsuranceNumber=SharedPrefsValues.insurance_number;
+   DateTime? vehicleInsuranceValidUntil = SharedPrefsValues.licence_validupto;
+  VehicleRegistrationForm({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Vehicle Registration Form'),
-        backgroundColor: Colors.lightGreen,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {
-              // Add logic for notifications
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.home),
-            onPressed: () {
-              Navigator.push(context,MaterialPageRoute(builder: (context) => Attandance()));
-            },
-          ),
-
-        ],
-      ),
-      body: SingleChildScrollView(
-        child:Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-
-          DropdownButtonFormField<String>(
-          decoration: InputDecoration(labelText: 'Vehicle Type'),
-          value: selectedVehicleType,
-          onChanged: (newValue) {
-            // Update the selected value when the user makes a selection.
-            setState(() {
-              selectedVehicleType = newValue;
-            });
-          },
-          items: ['Car', 'Bike', 'Scooter'].map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please select a vehicle type';
-            }
-            return null;
-          },
-          onSaved: (value) {
-            // Handle saving the selected value as needed.
-            vehicleType = value ?? '';
-          },
+  appBar: AppBar(
+    title: const Text('Vehicle Registration'),
+    backgroundColor: Colors.red, // Set the app bar color to red
+    actions: [
+      IconButton(
+        icon: const Icon(
+          Icons.notifications,
+          color: Colors.white, // Set the icon color to white
         ),
-
-          // TextFormField(
-              //   decoration: InputDecoration(labelText: 'Vehicle Type'),
-              //   validator: (value) {
-              //     if (value == null || value.isEmpty) {
-              //       return 'Please enter the vehicle type';
-              //     }
-              //     return null;
-              //   },
-              //   onSaved: (value) {
-              //     vehicleType = value ?? '';
-              //   },
-              // ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Registration Number',
-                  hintText: 'XX XX XX XXXX',
-                  hintStyle: TextStyle(
-                    fontStyle: FontStyle.italic,
-                    color: Colors.grey,
-                  ),
+        onPressed: () {
+          // Add logic for notifications
+        },
+      ),
+      IconButton(
+        icon: const Icon(
+          Icons.home,
+          color: Colors.white, // Set the icon color to white
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const Attandance()),
+          );
+        },
+      ),
+    ],
+  ),
+  body: Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Vehicle Type: $vehicleType',
+          style: const TextStyle(
+            fontSize: 18, // Adjust the text size
+            fontWeight: FontWeight.bold, // Make the text bold
+          ),
+        ),
+        Text('Registration Number: $vehicleRegistrationNumber'),
+        Text(
+          'Registration Date: ${vehicleRegistrationDate ?? ""}',
+          style: const TextStyle(
+            fontStyle: FontStyle.italic, // Make the text italic
+          ),
+        ),
+        Text('License Number: $drivingLicenseNumber'),
+        Text('Insurance Number: $vehicleInsuranceNumber'),
+        Text(
+          'Insurance Valid Until: ${vehicleInsuranceValidUntil ?? ""}',
+          style: const TextStyle(
+            fontStyle: FontStyle.italic, // Make the text italic
+          ),
+        ),
+        const SizedBox(height: 16),
+        ElevatedButton(
+          onPressed: () async {
+            final Map<String, dynamic>? editedData = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EditVehicleRegistrationScreen(
+                  initialVehicleType: vehicleType,
+                  initialVehicleRegistrationNumber: vehicleRegistrationNumber,
+                  initialVehicleRegistrationDate: vehicleRegistrationDate,
+                  initialDrivingLicenseNumber: drivingLicenseNumber,
+                  initialVehicleInsuranceNumber: vehicleInsuranceNumber,
+                  initialVehicleInsuranceValidUntil: vehicleInsuranceValidUntil,
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the registration number';
-                  }
-                  // else if (!validateIndianVehicleRegistrationNumber(value)) {
-                  //   return 'Invalid vehicle registration number';
-                  // }
-                  return null;
-                },
-                onSaved: (value) {
-                  vehicleRegistrationNumber = value ?? '';
-                },
               ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'License Number'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the license number';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  drivingLicenseNumber = value ?? '';
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Insurance Number'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the insurance number';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  vehicleInsuranceNumber = value ?? '';
-                },
-              ),
+            );
 
-              DateFormField(
-                    labelText: 'Registration Date',
-                    controller: _registrationDateController,
-                    inputFormatter: _dateMaskFormatter,
-                    futureValueAllowed:0,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter the registration date';
-                      } else if (selectedDate != null && selectedDate!.isAfter(DateTime.now())) {
-                        return 'Please enter a valid registration date';
-                      }
-                      return null;
-                    },
-                  ),
-              DateFormField(
-                labelText: 'Insurance Valid Upto',
-                controller: _insuranceUptoDateController,
-                inputFormatter: _dateMaskFormatter,
-                futureValueAllowed:1,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the insurance validity date';
-                  } else if (selectedDate != null && selectedDate!.isAfter(DateTime.now())) {
-                    return 'Please enter a valid registration date';
-                  }
-                  return null;
-                },
+            // Check if editedData is not null (i.e., if changes were made)
+            if (editedData != null) {
+              // Update the data with the edited values
+              vehicleType = editedData['vehicleType'];
+              vehicleRegistrationNumber = editedData['vehicleRegistrationNumber'];
+              vehicleRegistrationDate = editedData['vehicleRegistrationDate'];
+              drivingLicenseNumber = editedData['drivingLicenseNumber'];
+              vehicleInsuranceNumber = editedData['vehicleInsuranceNumber'];
+              vehicleInsuranceValidUntil = editedData['vehicleInsuranceValidUntil'];
+            }
+          },
+          style: ElevatedButton.styleFrom(
+            primary: Colors.red, // Set the button background color to red
+          ),
+          child: const Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.edit,
+                color: Colors.white, // Set the icon color to white
               ),
-              SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    _formKey.currentState!.save();
-
-                    // Form data is valid, you can access it
-                    print('Vehicle Type: $vehicleType');
-                    print('Registration Number: $vehicleRegistrationNumber');
-                    print('Registration Date: $vehicleRegistrationDate');
-                    print('License Number: $drivingLicenseNumber');
-                    print('Insurance Number: $vehicleInsuranceNumber');
-                    print('Insurance Valid Until: $vehicleInsuranceValidUntil');
-                  }
-                },
-                child: Text('Submit'),
+              SizedBox(width: 8),
+              Text(
+                'Edit',
+                style: TextStyle(
+                  color: Colors.white, // Set the text color to white
+                ),
               ),
             ],
           ),
         ),
-              ),
-      ),
-    );
-  }
+      ],
+    ),
+  ),
+);
+
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Vehicle Registration'),
+//         actions: [
+//           IconButton(
+//             icon: Icon(Icons.notifications),
+//             onPressed: () {
+//               // Add logic for notifications
+//             },
+//           ),
+//           IconButton(
+//             icon: Icon(Icons.home),
+//             onPressed: () {
+//               Navigator.push(context,MaterialPageRoute(builder: (context) => Attandance()));
+//             },
+//           ),
+
+//         ],
+      
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text('Vehicle Type: $vehicleType'),
+//             Text('Registration Number: $vehicleRegistrationNumber'),
+//             Text('Registration Date: ${vehicleRegistrationDate??""}'),
+//             Text('License Number: $drivingLicenseNumber'),
+//             Text('Insurance Number: $vehicleInsuranceNumber'),
+//             Text('Insurance Valid Until: ${vehicleInsuranceValidUntil??""}'),
+//              SizedBox(height: 16),
+//             ElevatedButton(
+//               onPressed: () async {
+//                 final Map<String, dynamic>? editedData = await Navigator.push(
+//       context,
+//       MaterialPageRoute(
+//         builder: (context) => EditVehicleRegistrationScreen(
+//           initialVehicleType: vehicleType,
+//           initialVehicleRegistrationNumber: vehicleRegistrationNumber,
+//           initialVehicleRegistrationDate: vehicleRegistrationDate,
+//           initialDrivingLicenseNumber: drivingLicenseNumber,
+//           initialVehicleInsuranceNumber: vehicleInsuranceNumber,
+//           initialVehicleInsuranceValidUntil: vehicleInsuranceValidUntil,
+//         ),
+//       ),
+//     );
+
+//     // Check if editedData is not null (i.e., if changes were made)
+//     if (editedData != null) {
+//       // Update the data with the edited values
+//       vehicleType = editedData['vehicleType'];
+//       vehicleRegistrationNumber = editedData['vehicleRegistrationNumber'];
+//       vehicleRegistrationDate = editedData['vehicleRegistrationDate'];
+//       drivingLicenseNumber = editedData['drivingLicenseNumber'];
+//       vehicleInsuranceNumber = editedData['vehicleInsuranceNumber'];
+//       vehicleInsuranceValidUntil = editedData['vehicleInsuranceValidUntil'];
+//     }
+//   },
+//   child: Text('Edit'),
+// ),
+//           ],
+//         ),
+//       ),
+//     );
+   }
 }

@@ -257,8 +257,8 @@ class _UserProfileState extends State<UserProfile> {
                       ),
                     ),
                     subtitle: Text(
-                          (SharedPrefsValues.licence_validupto != null && SharedPrefsValues.licence_validupto.isNotEmpty
-                              ?'(valid till: '+SharedPrefsValues.licence_validupto.toUpperCase() +') ':'(valid till : 23/10/2025)'),
+                          (SharedPrefsValues.licence_validupto != null  
+                              ?'(valid till: '+SharedPrefsValues.licence_validupto.toString() +') ':'(valid till : 23/10/2025)'),
 
                       style: TextStyle(
                         fontSize: 15,
@@ -276,8 +276,8 @@ class _UserProfileState extends State<UserProfile> {
                       ),
                     ),
                     trailing: Text(
-                      SharedPrefsValues.licence_validupto != null && SharedPrefsValues.licence_validupto.isNotEmpty
-                        ?SharedPrefsValues.licence_validupto.toUpperCase() : '23/10/2025',
+                      SharedPrefsValues.licence_validupto != null 
+                        ? SharedPrefsValues.licence_validupto.toString() : '23/10/2025',
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -294,8 +294,8 @@ class _UserProfileState extends State<UserProfile> {
                       ),
                     ),
                     trailing: Text(
-                      SharedPrefsValues.licence_validupto != null && SharedPrefsValues.licence_validupto.isNotEmpty
-                          ?SharedPrefsValues.licence_validupto.toUpperCase() : '23/10/2025',
+                      SharedPrefsValues.licence_validupto != null 
+                          ?SharedPrefsValues.licence_validupto.toString() : '23/10/2025',
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -312,8 +312,8 @@ class _UserProfileState extends State<UserProfile> {
                       ),
                     ),
                     subtitle: Text(
-                      SharedPrefsValues.licence_validupto != null && SharedPrefsValues.licence_validupto.isNotEmpty
-                          ?SharedPrefsValues.licence_validupto.toUpperCase() : '23/10/2025',
+                      SharedPrefsValues.licence_validupto != null
+                          ?SharedPrefsValues.licence_validupto.toString() : '23/10/2025',
                       style: TextStyle(
                         fontSize: 15,
                       ),

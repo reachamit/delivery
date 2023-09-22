@@ -19,10 +19,11 @@ class RegisterDeliveryPerson extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+         backgroundColor: Colors.red,
         title: Text('Welcome to OrderHerFood!'),
         centerTitle: true,
         automaticallyImplyLeading:false,
-        backgroundColor: Colors.lightGreen,
+        
       ),
       body: SingleChildScrollView(
       child: Container(

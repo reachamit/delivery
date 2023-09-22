@@ -18,6 +18,7 @@ class _OTPScreenState extends State<OTPScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         backgroundColor: Colors.red,
         title: Text('Verify Mobile Number'),
       ),
       body: Container(

@@ -338,6 +338,7 @@ class ApiHelper
     }
   }
 
+
   static Future<Map<String, dynamic>> UpdateVehicleDetailsDeliveryPerson(VehicleRegistration _deliveryperson) async {
     final Map<String, dynamic> requestData = _deliveryperson.toJson();
     print(requestData);

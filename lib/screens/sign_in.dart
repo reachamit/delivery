@@ -30,10 +30,11 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
 
       appBar: AppBar(
+         backgroundColor: Colors.red,
         title: Text('Sign In'),
         centerTitle: true,
         automaticallyImplyLeading:true,
-        backgroundColor:  Colors.green.shade100,
+        //backgroundColor:  Colors.green.shade100,
       ),
       body: Stack(
         children: [

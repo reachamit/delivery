@@ -16,20 +16,20 @@ class DeliveryPerson {
   final String deliveryPersonKey;
   final String deliveryPersonIdentity;
   final String drivingLicenseNo;
-  final String vehicleRegistrationDate;
+  final DateTime? vehicleRegistrationDate;
   final String passwd;
   final String drivingLicenseNumber;
   final String vehicleInsuranceNumber;
-  final String vehicleInsuranceValidUpto;
+  final DateTime? vehicleInsuranceValidUpto;
   final bool vehicleInsuranceRenewed;
   final bool vehicleInsuranceVerified;
-  final String drivingLicenseValidUpto;
+  final DateTime? drivingLicenseValidUpto;
   final bool drivingLicenseVerified;
   final bool vehicleRcVerified;
-  final String deliveryPersonRegistrationDateTime;
+  final DateTime? deliveryPersonRegistrationDateTime;
   final String otp;
   final String deliveryPersonPhoto;
-  final String vehicleRegistrationValidUpto;
+  final DateTime? vehicleRegistrationValidUpto;
 
   DeliveryPerson({
     required this.deliveryPersonCode,

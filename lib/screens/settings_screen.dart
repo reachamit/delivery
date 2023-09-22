@@ -9,6 +9,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         backgroundColor: Colors.red,
         title: Text('Settings'),
       ),
       body: ListView(
@@ -63,6 +64,7 @@ class ChangePasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         backgroundColor: Colors.red,
         title: Text('Change Password'),
       ),
       body: Center(

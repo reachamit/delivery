@@ -81,6 +81,7 @@ class _GoogleMap_CustomerLocationsState
       ),
       home: Scaffold(
         appBar: AppBar(
+           backgroundColor: Colors.red,
           title: const Text('Location Map Details '),
           elevation: 2,
           leading: IconButton(

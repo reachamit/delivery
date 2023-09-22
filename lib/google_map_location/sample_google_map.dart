@@ -37,6 +37,7 @@ class _SampleGoogleMapState extends State<SampleGoogleMap> {
       ),
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.red,
           title: const Text('Maps Sample App'),
           elevation: 2,
         ),

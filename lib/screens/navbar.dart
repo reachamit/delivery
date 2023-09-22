@@ -27,64 +27,62 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        padding: EdgeInsets.only(top: 80),
+        padding: const EdgeInsets.only(top: 80),
         children: [
-          Container(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    child: ClipOval(
-                      child: Image(
-                        image: CommonUtils.loadImageAssetOrDefault(),
-                        fit: BoxFit.cover,
-                        width: 60,
-                        height: 60,
-                      ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  child: ClipOval(
+                    child: Image(
+                      image: CommonUtils.loadImageAssetOrDefault(),
+                      fit: BoxFit.cover,
+                      width: 60,
+                      height: 60,
                     ),
                   ),
-                  SizedBox(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        SharedPrefsValues.name,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.black,
-                        ),
+                ),
+                const SizedBox(width: 16),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      SharedPrefsValues.name,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.black,
                       ),
-                      Text(
-                        SharedPrefsValues.deliveryPersonCode,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.black54,
-                        ),
+                    ),
+                    Text(
+                      SharedPrefsValues.deliveryPersonCode,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.black54,
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
 
           // ListTile(
           //     leading: Icon(Icons.home),
-          //     title: Text('Profile II'),
+          //     title: Text('Vehicle Registration'),
           //     onTap: () {
           //       Navigator.push(
           //         context,
-          //         MaterialPageRoute(builder: (context) => UserProfile()),
+          //         MaterialPageRoute(builder: (context) => VehicleRegistrationForm()),
           //       );
           //     }),
-           Divider(),
+           const Divider(),
           ListTile(
-            leading: Icon(Icons.person_2, color: Colors.orange),
-            title: Text('Profile'),
-            subtitle: Text(
+            leading: const Icon(Icons.person_2, color: Colors.orange),
+            title: const Text('Profile'),
+            subtitle: const Text(
               'View your profile details',
               style: TextStyle(
                 fontSize: 14,
@@ -94,15 +92,15 @@ class _NavBarState extends State<NavBar> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => UserProfile()),
+                MaterialPageRoute(builder: (context) => const UserProfile()),
               );
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-              leading: Icon(Icons.login, color: Colors.blue),
-              title: Text('Attandance'),
-              subtitle: Text(
+              leading: const Icon(Icons.login, color: Colors.blue),
+              title: const Text('Attandance'),
+              subtitle: const Text(
                 'Mark your Attandance',
                 style: TextStyle(
                   fontSize: 14,
@@ -112,13 +110,13 @@ class _NavBarState extends State<NavBar> {
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => Attandance()),
+                  MaterialPageRoute(builder: (context) => const Attandance()),
                 );
               }),
-          Divider(),
+          const Divider(),
           ListTile(
-              leading: Icon(Icons.reorder_sharp, color: Colors.blue),
-              title: Text('In Progress Orders'),
+              leading: const Icon(Icons.reorder_sharp, color: Colors.blue),
+              title: const Text('In Progress Orders'),
               onTap: () {
                 Navigator.pushReplacement(
                   context,
@@ -127,11 +125,11 @@ class _NavBarState extends State<NavBar> {
                 );
               }),
 
-          Divider(),
+          const Divider(),
           ListTile(
-              leading: Icon(Icons.account_balance_wallet),
-              title: Text('Wallet'),
-              subtitle: Text(
+              leading: const Icon(Icons.account_balance_wallet),
+              title: const Text('Wallet'),
+              subtitle: const Text(
                 'My Wallet Balance',
                 style: TextStyle(
                   fontSize: 14,
@@ -142,36 +140,36 @@ class _NavBarState extends State<NavBar> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => DeliveryPersonWallet()),
+                      builder: (context) => const DeliveryPersonWallet()),
                 );
               }),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(Icons.question_answer_rounded, color: Colors.green),
-            title: Text('FAQs'),
+            leading: const Icon(Icons.question_answer_rounded, color: Colors.green),
+            title: const Text('FAQs'),
             onTap: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => FaqPage()));
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(Icons.question_answer_rounded, color: Colors.green),
-            title: Text('Vehicle Registration'),
+            leading: const Icon(Icons.question_answer_rounded, color: Colors.green),
+            title: const Text('Vehicle Registration'),
             onTap: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => VehicleRegistrationForm()));
             },
           ),
 
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Sign Out'),
-            leading: Icon(Icons.exit_to_app, color: Colors.red),
+            title: const Text('Sign Out'),
+            leading: const Icon(Icons.exit_to_app, color: Colors.red),
             onTap: () async {
               final prefs = await SharedPreferences.getInstance();
               await prefs.clear();
-              Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context) => SignIn()),(Route<dynamic> route) => false );
+              Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context) => const SignIn()),(Route<dynamic> route) => false );
             },
           ),
         ],

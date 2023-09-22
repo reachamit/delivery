@@ -58,7 +58,7 @@ class OrderDetail {
     //final orderData = json['Data'];
     var result= OrderDetail(
       customername: orderData['customername']??"",
-      customermobile: orderData['customermobile'].toString()??"",
+      customermobile: orderData['customermobile'].toString(),
       customeremail: orderData['customeremail']??"",
       customerCode: orderData['customercode']??"",
       customerVendorCode: orderData['customer_vendorcode']??"",

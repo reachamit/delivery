@@ -2,10 +2,10 @@ class VehicleRegistration {
   String delivery_person_code;
   String vehical_type;
   String vehical_registration_number;
-  DateTime vehical_registration_date;
+  DateTime? vehical_registration_date;
   String driving_license_number;
   String vehicle_insurance_number;
-  DateTime vehicle_insurance_valid_upto;
+  DateTime? vehicle_insurance_valid_upto;
 
   VehicleRegistration({
     required this.delivery_person_code,

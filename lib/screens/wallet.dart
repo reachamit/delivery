@@ -55,9 +55,10 @@ class _DeliveryPersonWalletState extends State<DeliveryPersonWallet> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         backgroundColor: Colors.red,
         title: Text('Wallet Details'),
         centerTitle: true,
-        backgroundColor: Colors.lightGreen,
+        //backgroundColor: Colors.lightGreen,
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),

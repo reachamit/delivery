@@ -33,6 +33,7 @@ class _DeliveredOrdersScreenState extends State<DeliveredOrdersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         backgroundColor: Colors.red,
         title: Text('Delivered Orders'),
       ),
       body: ListView.builder(

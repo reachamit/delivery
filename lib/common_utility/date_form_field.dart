@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -7,14 +6,14 @@ class DateFormField extends StatelessWidget {
   final String labelText;
   final TextEditingController controller;
   final FormFieldValidator<String>? validator;
-  final MaskTextInputFormatter inputFormatter;
+  //final MaskTextInputFormatter inputFormatter;
   final int futureValueAllowed;
 
 
   DateFormField({
     required this.labelText,
     required this.controller,
-    required this.inputFormatter,
+   // required this.inputFormatter,
     required this.futureValueAllowed,
     this.validator,
   });
@@ -35,11 +34,11 @@ class DateFormField extends StatelessWidget {
       context: context,
       initialDate: controller.text.isEmpty
           ? currentDate
-          : DateFormat('dd-MM-yyyy').parse(controller.text),
+          : DateFormat('dd-MM-yyyy').parse(controller.text, true),
       firstDate: firstSelectableDate,
       lastDate: lastSelectableDate,
     )) ?? currentDate;
-
+if (picked != null)
     if (futureValueAllowed == 0 && picked.isAfter(currentDate)) {
       controller.clear();
     } else {
@@ -51,12 +50,12 @@ class DateFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      inputFormatters: [inputFormatter], // Add the MaskTextInputFormatter here
+      //inputFormatters: [inputFormatter], // Add the MaskTextInputFormatter here
       decoration: InputDecoration(
         labelText: labelText,
-        hintText: inputFormatter.maskText('dd-MM-YYYY'),
+       // hintText: inputFormatter.maskText('dd-MM-YYYY'),
         suffixIcon: IconButton(
-          icon: Icon(Icons.calendar_today),
+          icon: const Icon(Icons.calendar_today),
           onPressed: () {
             _selectDate(context);
           },
@@ -70,18 +69,3 @@ class DateFormField extends StatelessWidget {
     );
   }
 }
-
-// Usage example:
-// DateFormField(
-//   labelText: 'Registration Date',
-//   controller: _dateController,
-//   inputFormatter: _dateMaskFormatter, // Pass the MaskTextInputFormatter here
-//   validator: (value) {
-//     if (value == null || value.isEmpty) {
-//       return 'Please enter the registration date';
-//     } else if (selectedDate != null && selectedDate.isAfter(DateTime.now())) {
-//       return 'Please enter a valid registration date';
-//     }
-//     return null;
-//   },
-// ),
