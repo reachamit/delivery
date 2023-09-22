@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "562639468353",
+    "firebase_url": "https://orderherfood-delivery-default-rtdb.firebaseio.com",
+    "project_id": "orderherfood-delivery",
+    "storage_bucket": "orderherfood-delivery.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562639468353:android:dfc8a0dd00c41543c8d3c0",
+        "android_client_info": {
+          "package_name": "com.orderherfood.delivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562639468353-j0juemk14duemubeatqpg3319ruhrtdl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBojzjzo4PH4UA_oI4avm4w1ooZEjWPmPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562639468353-j0juemk14duemubeatqpg3319ruhrtdl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
