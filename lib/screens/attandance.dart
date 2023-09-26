@@ -30,7 +30,7 @@ class Attandance extends StatefulWidget {
 }
 
 class _AttandanceState extends State<Attandance> {
-  bool loginState = SharedPrefsValues.deliveryLoginStatus=="1"?true:false;
+
 
   bool applyBreak = false;
   String formatTime(DateTime time) {
@@ -87,58 +87,84 @@ class _AttandanceState extends State<Attandance> {
     //   }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
-        //title: Text('Mark Your Presence'),
-        title: Text(
-          SharedPrefsValues.deliveryPersonCode,
-          style:  TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 18, color: textColor),
+        title: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(0.0),
+              child: loginState
+                  ? Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.blue, // Border color
+                    width: 2.0, // Border width
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)), // Border radius
+                ),
+                padding: EdgeInsets.all(2.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.circle,
+                      color: Colors.green,
+                      size: 18,
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      "Online",
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+                  :  Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.blue, // Border color
+                    width: 2.0, // Border width
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)), // Border radius
+                ),
+                padding: EdgeInsets.all(2.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.circle,
+                      color: Colors.black,
+                      size: 18,
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      "Offline",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Center(
+              child: Text('  ',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            )
+          ],
         ),
+        backgroundColor: Colors.red,
         centerTitle: true,
        // backgroundColor: backgroundColor,
         actions: <Widget>[
-
-      Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: loginState
-          ? const Row(
-        children: [
-          Icon(
-            Icons.circle,
-            color: Colors.green,
-            size: 14,
-          ),
-          SizedBox(width: 8),
-          Text(
-            "Online",
-            style: TextStyle(
-              color: Colors.green,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      )
-          : const Row(
-        children: [
-          Icon(
-            Icons.circle,
-            color: Colors.black,
-            size: 12,
-          ),
-          SizedBox(width: 8),
-          Text(
-            "Offline",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    ),
-
           badges.Badge(
-          
             onTap: () {},
             position: badges.BadgePosition.topEnd(top: -8, end: 8),
             showBadge: true,//notificationCount > 0,
@@ -215,6 +241,22 @@ class _AttandanceState extends State<Attandance> {
                     .headline6
                     ?.copyWith(fontWeight: FontWeight.bold),
               ),
+              const Divider(),
+              // Text('Mark Your Presence'),
+              ListTile(
+                title:  Text(
+                  "User ID : ",
+                  style:  TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black45),
+                ),
+               trailing: Text(
+                   SharedPrefsValues.deliveryPersonCode,
+                  style:  TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18, color: Colors.red),
+                ),
+              ),
+
+
               const Divider(),
               ListTile(
                 //title: const Text("Login/Start your Day:"),

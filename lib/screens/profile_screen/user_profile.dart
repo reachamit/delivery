@@ -221,104 +221,104 @@ class _UserProfileState extends State<UserProfile> {
             Container(
               child: Column(
                 children: <Widget>[
-                  ListTile(
-                    visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                    title: Text(
-                      'Vehicle Registration Number',
-                      style: TextStyle(
-                        color: Colors.deepOrange,
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    trailing: Text(
-                      SharedPrefsValues.vehicle_number.toUpperCase() ?? '',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                  Divider(),
-                  ListTile(
-                    visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                    title: Text(
-                      'Driving Licence',
-                      style: TextStyle(
-                        color: Colors.deepOrange,
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    trailing: Text(
-                        SharedPrefsValues.licence_number != null && SharedPrefsValues.licence_number.isNotEmpty
-                      ?SharedPrefsValues.licence_number.toUpperCase() : '',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                    subtitle: Text(
-                          (SharedPrefsValues.licence_validupto != null  
-                              ?'(valid till: '+SharedPrefsValues.licence_validupto.toString() +') ':'(valid till : 23/10/2025)'),
-
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text(
-                      'Licence valid Upto',
-                      style: TextStyle(
-                        color: Colors.deepOrange,
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    trailing: Text(
-                      SharedPrefsValues.licence_validupto != null 
-                        ? SharedPrefsValues.licence_validupto.toString() : '23/10/2025',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text(
-                      'Licence valid Upto',
-                      style: TextStyle(
-                        color: Colors.deepOrange,
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    trailing: Text(
-                      SharedPrefsValues.licence_validupto != null 
-                          ?SharedPrefsValues.licence_validupto.toString() : '23/10/2025',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text(
-                      'Licence valid Upto',
-                      style: TextStyle(
-                        color: Colors.deepOrange,
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    subtitle: Text(
-                      SharedPrefsValues.licence_validupto != null
-                          ?SharedPrefsValues.licence_validupto.toString() : '23/10/2025',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
+                  // ListTile(
+                  //   visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+                  //   title: Text(
+                  //     'Vehicle Registration Number',
+                  //     style: TextStyle(
+                  //       color: Colors.deepOrange,
+                  //       fontSize: 17,
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  //   trailing: Text(
+                  //     SharedPrefsValues.vehicle_number.toUpperCase() ?? '',
+                  //     style: TextStyle(
+                  //       fontSize: 15,
+                  //     ),
+                  //   ),
+                  // ),
+                  // Divider(),
+                  // ListTile(
+                  //   visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+                  //   title: Text(
+                  //     'Driving Licence',
+                  //     style: TextStyle(
+                  //       color: Colors.deepOrange,
+                  //       fontSize: 17,
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  //   trailing: Text(
+                  //       SharedPrefsValues.licence_number != null && SharedPrefsValues.licence_number.isNotEmpty
+                  //     ?SharedPrefsValues.licence_number.toUpperCase() : '',
+                  //     style: TextStyle(
+                  //       fontSize: 15,
+                  //     ),
+                  //   ),
+                  //   subtitle: Text(
+                  //         (SharedPrefsValues.licence_validupto != null
+                  //             ?'(valid till: '+SharedPrefsValues.licence_validupto.toString() +') ':'(valid till : 23/10/2025)'),
+                  //
+                  //     style: TextStyle(
+                  //       fontSize: 15,
+                  //     ),
+                  //   ),
+                  // ),
+                  // Divider(),
+                  // ListTile(
+                  //   title: Text(
+                  //     'Licence valid Upto',
+                  //     style: TextStyle(
+                  //       color: Colors.deepOrange,
+                  //       fontSize: 17,
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  //   trailing: Text(
+                  //     SharedPrefsValues.licence_validupto != null
+                  //       ? SharedPrefsValues.licence_validupto.toString() : '23/10/2025',
+                  //     style: TextStyle(
+                  //       fontSize: 15,
+                  //     ),
+                  //   ),
+                  // ),
+                  // Divider(),
+                  // ListTile(
+                  //   title: Text(
+                  //     'Licence valid Upto',
+                  //     style: TextStyle(
+                  //       color: Colors.deepOrange,
+                  //       fontSize: 17,
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  //   trailing: Text(
+                  //     SharedPrefsValues.licence_validupto != null
+                  //         ?SharedPrefsValues.licence_validupto.toString() : '23/10/2025',
+                  //     style: TextStyle(
+                  //       fontSize: 15,
+                  //     ),
+                  //   ),
+                  // ),
+                  // Divider(),
+                  // ListTile(
+                  //   title: Text(
+                  //     'Licence valid Upto',
+                  //     style: TextStyle(
+                  //       color: Colors.deepOrange,
+                  //       fontSize: 17,
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  //   subtitle: Text(
+                  //     SharedPrefsValues.licence_validupto != null
+                  //         ?SharedPrefsValues.licence_validupto.toString() : '23/10/2025',
+                  //     style: TextStyle(
+                  //       fontSize: 15,
+                  //     ),
+                  //   ),
+                  // ),
                   // if (SharedPrefsValues.Address != null && SharedPrefsValues.Address.isNotEmpty)
                   //   Card(
                   //     child: ListTile(

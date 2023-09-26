@@ -44,84 +44,252 @@ class VehicleRegistrationForm extends StatelessWidget {
       ),
     ],
   ),
-  body: Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Vehicle Type: $vehicleType',
-          style: const TextStyle(
-            fontSize: 18, // Adjust the text size
-            fontWeight: FontWeight.bold, // Make the text bold
-          ),
-        ),
-        Text('Registration Number: $vehicleRegistrationNumber'),
-        Text(
-          'Registration Date: ${vehicleRegistrationDate ?? ""}',
-          style: const TextStyle(
-            fontStyle: FontStyle.italic, // Make the text italic
-          ),
-        ),
-        Text('License Number: $drivingLicenseNumber'),
-        Text('Insurance Number: $vehicleInsuranceNumber'),
-        Text(
-          'Insurance Valid Until: ${vehicleInsuranceValidUntil ?? ""}',
-          style: const TextStyle(
-            fontStyle: FontStyle.italic, // Make the text italic
-          ),
-        ),
-        const SizedBox(height: 16),
-        ElevatedButton(
-          onPressed: () async {
-            final Map<String, dynamic>? editedData = await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => EditVehicleRegistrationScreen(
-                  initialVehicleType: vehicleType,
-                  initialVehicleRegistrationNumber: vehicleRegistrationNumber,
-                  initialVehicleRegistrationDate: vehicleRegistrationDate,
-                  initialDrivingLicenseNumber: drivingLicenseNumber,
-                  initialVehicleInsuranceNumber: vehicleInsuranceNumber,
-                  initialVehicleInsuranceValidUntil: vehicleInsuranceValidUntil,
+      body: ListView(
+        children: <Widget>[
+          Container(
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+                  title: Text(
+                    'Registration Number',
+                    style: TextStyle(
+                      color: Colors.deepOrange,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  trailing: Text(
+                    SharedPrefsValues.vehicle_number.toUpperCase() ?? '--Not Available--',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
-              ),
-            );
+                Divider(),
+                ListTile(
+                  visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+                  title: Text(
+                    'Driving Licence',
+                    style: TextStyle(
+                      color: Colors.deepOrange,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  trailing: Text(
+                    SharedPrefsValues.licence_number != null && SharedPrefsValues.licence_number.isNotEmpty
+                        ?SharedPrefsValues.licence_number.toUpperCase() : '',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                  subtitle: Text(
+                    (SharedPrefsValues.licence_validupto != null
+                        ?'(valid till: '+SharedPrefsValues.licence_validupto.toString() +') ':'(valid till : 23/10/2025)'),
 
-            // Check if editedData is not null (i.e., if changes were made)
-            if (editedData != null) {
-              // Update the data with the edited values
-              vehicleType = editedData['vehicleType'];
-              vehicleRegistrationNumber = editedData['vehicleRegistrationNumber'];
-              vehicleRegistrationDate = editedData['vehicleRegistrationDate'];
-              drivingLicenseNumber = editedData['drivingLicenseNumber'];
-              vehicleInsuranceNumber = editedData['vehicleInsuranceNumber'];
-              vehicleInsuranceValidUntil = editedData['vehicleInsuranceValidUntil'];
-            }
-          },
-          style: ElevatedButton.styleFrom(
-            primary: Colors.red, // Set the button background color to red
-          ),
-          child: const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                Icons.edit,
-                color: Colors.white, // Set the icon color to white
-              ),
-              SizedBox(width: 8),
-              Text(
-                'Edit',
-                style: TextStyle(
-                  color: Colors.white, // Set the text color to white
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  ),
+                Divider(),
+                ListTile(
+                  visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+                  title: Text(
+                    'Insurance',
+                    style: TextStyle(
+                      color: Colors.deepOrange,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  trailing: Text(
+                    SharedPrefsValues.insurance_number != null && SharedPrefsValues.insurance_number.isNotEmpty
+                        ?SharedPrefsValues.insurance_number.toUpperCase() : '--Not Available--',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                  subtitle: Text(
+                    (SharedPrefsValues.insurance_validupto != null
+                        ?'(valid till: '+SharedPrefsValues.insurance_validupto.toString() +') ':'(valid till : 23/10/2025)'),
+
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+                Divider(),
+                ListTile(
+                  title: Text(
+                    'Licence valid Upto',
+                    style: TextStyle(
+                      color: Colors.deepOrange,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  trailing: Text(
+                    SharedPrefsValues.licence_validupto != null
+                        ?SharedPrefsValues.licence_validupto.toString() : '23/10/2025',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+                Divider(),
+                ListTile(
+                  title: Text(
+                    'Licence valid Upto',
+                    style: TextStyle(
+                      color: Colors.deepOrange,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: Text(
+                    SharedPrefsValues.licence_validupto != null
+                        ?SharedPrefsValues.licence_validupto.toString() : '23/10/2025',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+
+                BottomAppBar(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 10.0),
+                    color: Colors.transparent,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () async {
+                            final Map<String, dynamic>? editedData = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditVehicleRegistrationScreen(
+                                  initialVehicleType: vehicleType,
+                                  initialVehicleRegistrationNumber: vehicleRegistrationNumber,
+                                  initialVehicleRegistrationDate: vehicleRegistrationDate,
+                                  initialDrivingLicenseNumber: drivingLicenseNumber,
+                                  initialVehicleInsuranceNumber: vehicleInsuranceNumber,
+                                  initialVehicleInsuranceValidUntil: vehicleInsuranceValidUntil,
+                                ),
+                              ),
+                            );
+
+                            // Check if editedData is not null (i.e., if changes were made)
+                            if (editedData != null) {
+                              // Update the data with the edited values
+                              vehicleType = editedData['vehicleType'];
+                              vehicleRegistrationNumber = editedData['vehicleRegistrationNumber'];
+                              vehicleRegistrationDate = editedData['vehicleRegistrationDate'];
+                              drivingLicenseNumber = editedData['drivingLicenseNumber'];
+                              vehicleInsuranceNumber = editedData['vehicleInsuranceNumber'];
+                              vehicleInsuranceValidUntil = editedData['vehicleInsuranceValidUntil'];
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red, // Set the button background color to red
+                          ),
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.edit,
+                                color: Colors.white, // Set the icon color to white
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                'Edit',
+                                style: TextStyle(
+                                  color: Colors.white, // Set the text color to white
+                                ),
+                              ),
+                            ],
+                          ),
+
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+              ],
+            ),
+          )
+        ],
+      ),
+  // body: Padding(
+  //   padding: const EdgeInsets.all(16.0),
+  //   child: Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Text(
+  //         'Vehicle Type: $vehicleType',
+  //         style: const TextStyle(
+  //           fontSize: 18, // Adjust the text size
+  //           fontWeight: FontWeight.bold, // Make the text bold
+  //         ),
+  //       ),
+  //       Text('Registration Number: $vehicleRegistrationNumber'),
+  //       Text('Registration Date: ${vehicleRegistrationDate ?? ""}'        ),
+  //       Text('License Number: $drivingLicenseNumber'),
+  //       Text('Insurance Number: $vehicleInsuranceNumber'),
+  //       Text('Insurance Valid Until: ${vehicleInsuranceValidUntil ?? ""}'),
+  //       const SizedBox(height: 16),
+  //       ElevatedButton(
+  //         onPressed: () async {
+  //           final Map<String, dynamic>? editedData = await Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => EditVehicleRegistrationScreen(
+  //                 initialVehicleType: vehicleType,
+  //                 initialVehicleRegistrationNumber: vehicleRegistrationNumber,
+  //                 initialVehicleRegistrationDate: vehicleRegistrationDate,
+  //                 initialDrivingLicenseNumber: drivingLicenseNumber,
+  //                 initialVehicleInsuranceNumber: vehicleInsuranceNumber,
+  //                 initialVehicleInsuranceValidUntil: vehicleInsuranceValidUntil,
+  //               ),
+  //             ),
+  //           );
+  //
+  //           // Check if editedData is not null (i.e., if changes were made)
+  //           if (editedData != null) {
+  //             // Update the data with the edited values
+  //             vehicleType = editedData['vehicleType'];
+  //             vehicleRegistrationNumber = editedData['vehicleRegistrationNumber'];
+  //             vehicleRegistrationDate = editedData['vehicleRegistrationDate'];
+  //             drivingLicenseNumber = editedData['drivingLicenseNumber'];
+  //             vehicleInsuranceNumber = editedData['vehicleInsuranceNumber'];
+  //             vehicleInsuranceValidUntil = editedData['vehicleInsuranceValidUntil'];
+  //           }
+  //         },
+  //         style: ElevatedButton.styleFrom(
+  //           primary: Colors.red, // Set the button background color to red
+  //         ),
+  //         child: const Row(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: [
+  //             Icon(
+  //               Icons.edit,
+  //               color: Colors.white, // Set the icon color to white
+  //             ),
+  //             SizedBox(width: 8),
+  //             Text(
+  //               'Edit',
+  //               style: TextStyle(
+  //                 color: Colors.white, // Set the text color to white
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ],
+  //   ),
+  // ),
 );
 
 //     return Scaffold(

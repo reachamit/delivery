@@ -58,6 +58,7 @@ dependencies:
   flutter_local_notifications: ^15.1.1
   badges: ^3.1.2
   clean_dialog: ^0.0.16
+  audioplayers: ^5.1.0
 flutter_icons:
     image_path: "assets/icons/icon.png"
     android: "launcher_icon"
@@ -93,6 +94,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/
+    - assets/audio/beep-01.mp3
 
   # To add assets to your application, add an assets section, like this:
   # assets:

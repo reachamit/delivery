@@ -1,4 +1,5 @@
 import 'package:delivery/common_utility/global_shared_prefences.dart';
+import 'package:delivery/main.dart';
 import 'package:delivery/screens/attandance.dart';
 import 'package:delivery/screens/CommonWidgets/user_enabled_bottom_message.dart';
 import 'package:delivery/screens/order_screen/google_map_customer_roadmap.dart';
@@ -14,7 +15,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
-
+import 'package:badges/badges.dart' as badges;
 
 class OrderStatus extends StatefulWidget {
   @override
@@ -28,9 +29,82 @@ class _OrderStatusState extends State<OrderStatus> {
       length: 3, // Number of tabs
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Order Status'),
+            title: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(0.0),
+                  child: loginState
+                      ? Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.blue, // Border color
+                        width: 2.0, // Border width
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)), // Border radius
+                    ),
+                    padding: EdgeInsets.all(2.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.circle,
+                          color: Colors.green,
+                          size: 18,
+                        ),
+                        SizedBox(width: 5),
+                        Text(
+                          "Online",
+                          style: TextStyle(
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                      :  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.blue, // Border color
+                        width: 2.0, // Border width
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)), // Border radius
+                    ),
+                    padding: EdgeInsets.all(2.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.circle,
+                          color: Colors.black,
+                          size: 18,
+                        ),
+                        SizedBox(width: 5),
+                        Text(
+                          "Offline",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Text('  Order Details',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                )
+              ],
+            ),
           centerTitle: true,
-          backgroundColor: Colors.lightGreen,
+          backgroundColor: Colors.red,
+
           leading: IconButton(
           icon: Icon(Icons.arrow_back), // You can change the icon as needed
           onPressed: () {
@@ -41,6 +115,33 @@ class _OrderStatusState extends State<OrderStatus> {
           );
           },
           ),
+            actions: <Widget>[
+              badges.Badge(
+                onTap: () {},
+                position: badges.BadgePosition.topEnd(top: -8, end: 8),
+                showBadge: true,//notificationCount > 0,
+                ignorePointer: false,
+                badgeContent: Text(
+                  notificationCount.toString(),
+                  style: TextStyle(color: Colors.white),
+                ),
+                child: IconButton(
+                  icon:Icon(Icons.notifications),
+                  onPressed: () {
+                    setState(() {
+                      notificationCount = 0;
+                    });
+                  },
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.home),
+                onPressed: () {
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => Attandance()));
+                },
+              ),
+            ],
+
             bottom: TabBar(
               tabs: [
                 Tab(child: Text('Received', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white))),

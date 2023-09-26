@@ -19,10 +19,13 @@ class NotificationService {
         android: initializationSettingsAndroid,
         //iOS: initializationSettingsIOS
     );
-    await notificationsPlugin.initialize(initializationSettings,
+     await notificationsPlugin.initialize(initializationSettings,
         onDidReceiveNotificationResponse:
-            (NotificationResponse notificationResponse) async {});
-  }
+            (NotificationResponse notificationResponse) async {
+              print('onDidReceiveNotificationResponse');
+              print(notificationResponse);
+            });
+     }
 
   notificationDetails() {
     return const NotificationDetails(
@@ -36,6 +39,5 @@ class NotificationService {
       ) async {
 
     return await notificationsPlugin.show(id, title, body, await notificationDetails(),payload: payLoad?.toString(),);
-
   }
 }

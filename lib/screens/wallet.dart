@@ -1,5 +1,6 @@
 import 'package:delivery/common_utility/api_helper.dart';
 import 'package:delivery/common_utility/global_shared_prefences.dart';
+import 'package:delivery/main.dart';
 import 'package:delivery/models/cls_wallet.dart';
 import 'package:delivery/screens/attandance.dart';
 import 'package:delivery/screens/CommonWidgets/user_enabled_bottom_message.dart';
@@ -56,7 +57,80 @@ class _DeliveryPersonWalletState extends State<DeliveryPersonWallet> {
     return Scaffold(
       appBar: AppBar(
          backgroundColor: Colors.red,
-        title: Text('Wallet Details'),
+        //title: Text('Wallet Details'),
+        title: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(0.0),
+              child: loginState
+                  ? Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.blue, // Border color
+                    width: 2.0, // Border width
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)), // Border radius
+                ),
+                padding: EdgeInsets.all(2.0),
+                child: Row(
+                children: [
+                  Icon(
+                    Icons.circle,
+                    color: Colors.green,
+                    size: 18,
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    "Online",
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+              )
+                  :  Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.blue, // Border color
+                    width: 2.0, // Border width
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)), // Border radius
+                ),
+                padding: EdgeInsets.all(2.0),
+                child: Row(
+                children: [
+                  Icon(
+                    Icons.circle,
+                    color: Colors.black,
+                    size: 18,
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    "Offline",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+                ),
+              ),
+            ),
+            Center(
+              child: Text('  Wallet Details',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            )
+          ],
+        ),
         centerTitle: true,
         //backgroundColor: Colors.lightGreen,
         actions: [

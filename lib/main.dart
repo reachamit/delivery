@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:audioplayers/audioplayers.dart';
 import 'package:delivery/models/recieve_notification.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +13,13 @@ import 'screens/attandance.dart';
 import 'screens/onboard_screen/onboarding_screen.dart';
 import 'screens/order_screen/neworder_dialog.dart';
 import 'screens/sign_in.dart';
+import 'dart:convert';
 
 //validate here
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
- var notificationCount = 0;
+var notificationCount = 0;
+bool loginState = SharedPrefsValues.deliveryLoginStatus=="1"?true:false;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +29,10 @@ Future<void> main() async {
   NotificationService().initNotification();
   await FirebaseMessaging.instance.setAutoInitEnabled(true);
   final fcmToken = await FirebaseMessaging.instance.getToken();
+  final bytes = utf8.encode(fcmToken.toString());
+  final base64Str = base64.encode(bytes);
   print('fcmToken:' + fcmToken.toString());
+  print('fcmToken_base64Str:' + base64Str);
   await FirebaseMessaging.instance.subscribeToTopic("OrderHerFoodDelivery");
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
@@ -55,6 +63,7 @@ Future<void> _handleForegroundMessage(RemoteMessage message) async {
 
   print(navigatorKey.currentState);
   if (message.data["type"] == "neworder") {
+      //playAssetMP3();
     navigatorKey.currentState?.push(
         MaterialPageRoute(
           builder: (_) => NewOrderScreen(
@@ -65,13 +74,16 @@ Future<void> _handleForegroundMessage(RemoteMessage message) async {
     );
   }
 }
+
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   notificationCount++;
+
   // Handle background message here
   print("Handling background message: ${message.notification!.title}, ${message.notification!.body}, ${message.data}");
   print(navigatorKey.currentState);
   if (message.data["type"] == "neworder") {
-    navigatorKey.currentState?.push(
+    //playAssetMP3();
+navigatorKey.currentState?.push(
         MaterialPageRoute(
           builder: (_) => NewOrderScreen(
             data: message.data,
