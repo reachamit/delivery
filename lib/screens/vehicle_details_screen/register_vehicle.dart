@@ -83,9 +83,7 @@ class _EditVehicleRegistrationScreenState
               Navigator.push(context,MaterialPageRoute(builder: (context) => Attandance()));
             },
           ),
-
         ],
-      
       ),
       body: SingleChildScrollView(
         child: Padding(

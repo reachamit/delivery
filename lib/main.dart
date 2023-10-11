@@ -33,7 +33,7 @@ Future<void> main() async {
   final base64Str = base64.encode(bytes);
   print('fcmToken:' + fcmToken.toString());
   print('fcmToken_base64Str:' + base64Str);
-  await FirebaseMessaging.instance.subscribeToTopic("OrderHerFoodDelivery");
+  //await FirebaseMessaging.instance.subscribeToTopic("OrderHerFoodDelivery");
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
     badge: true,
@@ -52,6 +52,14 @@ Future<void> _handleForegroundMessage(RemoteMessage message) async {
   print(message.notification!.title.toString());
   print(message.notification!.body.toString());
   print('Message data: ${message.data}');
+
+  // final messagePayload = message.data;
+  // if (messagePayload['type'] == 'new_message') {
+  //   showNotification(messagePayload['message']);
+  // } else if (messagePayload['type'] == 'event_reminder') {
+  //   showNotification(messagePayload['event_name']);
+  // }
+
   try {
     NotificationService().showNotification(
         title: message.notification!.title.toString(),
@@ -83,7 +91,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print(navigatorKey.currentState);
   if (message.data["type"] == "neworder") {
     //playAssetMP3();
-navigatorKey.currentState?.push(
+        navigatorKey.currentState?.push(
         MaterialPageRoute(
           builder: (_) => NewOrderScreen(
             data: message.data,

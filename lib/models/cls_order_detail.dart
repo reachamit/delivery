@@ -55,7 +55,6 @@ class OrderDetail {
   });
 
   factory OrderDetail.fromJson(Map<String, dynamic> orderData) {
-    //final orderData = json['Data'];
     var result= OrderDetail(
       customername: orderData['customername']??"",
       customermobile: orderData['customermobile'].toString(),
@@ -75,7 +74,7 @@ class OrderDetail {
       pickupDateTime: orderData['pickup_date_time'] != null ? DateTime.parse(orderData['pickup_date_time']) : null,
       pickedUpBy: orderData['picked_up_by']??"",
       vendorCode: orderData['vendorcode']??"",
-      delivered: orderData['delivered']??false,
+      delivered: orderData['delivered']??"N",
       deliveredDateTime: orderData['delivered_date_time'] != null ? DateTime.parse(orderData['delivered_date_time']) : null,
       otpMatch: orderData['otp_match']??'N',
       paymentTaken: orderData['payment_taken']??'N',
@@ -87,5 +86,18 @@ class OrderDetail {
     print('result');
     print(result);
     return result;
+  }
+}
+class OrderDetailsList {
+  List<OrderDetail> orderDetailsList;
+
+  OrderDetailsList({required this.orderDetailsList});
+
+  factory OrderDetailsList.fromJsonList(List<dynamic> list) {
+    List<OrderDetail> orderDetailsList = list.map((data) {
+      return OrderDetail.fromJson(data);
+    }).toList();
+
+    return OrderDetailsList(orderDetailsList: orderDetailsList);
   }
 }

@@ -19,46 +19,41 @@ class RegisterDeliveryPerson extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-         backgroundColor: Colors.red,
+        backgroundColor: Colors.red,
         title: Text('Welcome to OrderHerFood!'),
         centerTitle: true,
-        automaticallyImplyLeading:false,
-        
+        automaticallyImplyLeading: false,
       ),
-      body: SingleChildScrollView(
-      child: Container(
-    decoration: BoxDecoration(
-    gradient: LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-    colors: [Colors.lightGreen, Colors.white54],
-    ),
-    ),
-        child:Center(
-          child: isSmallScreen
-              ? Column(
-            //mainAxisSize: MainAxisSize.min,
-            children: const [
-              _Logo(),
-              _FormContent(),
-            ],
-          )
-              : Container(
-            //padding: const EdgeInsets.all(32.0),
-            constraints: const BoxConstraints(maxWidth: 800),
-            child: Row(
-              children: const [
-                Expanded(child: _Logo()),
-                Expanded(
-                  child: Center(child: _FormContent()),
-                ),
-              ],
-            ),
-          )
-      ),
-    ),
-      ),
-      //backgroundColor: Colors.white70,
+      body: Stack(
+          fit: StackFit.expand,
+          // Make the Stack expand to fill the available space
+          children: [
+            Image.asset('assets/images/transparent_background.jpg',
+                fit: BoxFit.cover),
+            SingleChildScrollView(
+              child: Center(
+                  child: isSmallScreen
+                      ? Column(
+                          //mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            _Logo(),
+                            _FormContent(),
+                          ],
+                        )
+                      : Container(
+                          //padding: const EdgeInsets.all(32.0),
+                          constraints: const BoxConstraints(maxWidth: 800),
+                          child: Row(
+                            children: const [
+                              Expanded(child: _Logo()),
+                              Expanded(
+                                child: Center(child: _FormContent()),
+                              ),
+                            ],
+                          ),
+                        )),
+            )
+          ]),
     );
   }
 }

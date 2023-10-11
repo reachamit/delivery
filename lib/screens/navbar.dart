@@ -1,5 +1,6 @@
 import 'package:delivery/common_utility/common_util.dart';
 import 'package:delivery/common_utility/global_shared_prefences.dart';
+import 'package:delivery/screens/latest_events.dart';
 import 'package:delivery/screens/order_screen/delievered_orders_screen.dart';
 import 'package:delivery/screens/order_screen/in_progress_orders.dart';
 import 'package:delivery/screens/order_screen/order_status_screen.dart';
@@ -29,43 +30,51 @@ class _NavBarState extends State<NavBar> {
       child: ListView(
         padding: const EdgeInsets.only(top: 80),
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  child: ClipOval(
-                    child: Image(
-                      image: CommonUtils.loadImageAssetOrDefault(),
-                      fit: BoxFit.cover,
-                      width: 60,
-                      height: 60,
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/transparent_background.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    child: ClipOval(
+                      child: Image(
+                        image: CommonUtils.loadImageAssetOrDefault(),
+                        fit: BoxFit.cover,
+                        width: 60,
+                        height: 60,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      SharedPrefsValues.name,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.black,
+                  const SizedBox(width: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        SharedPrefsValues.name,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                    Text(
-                      SharedPrefsValues.deliveryPersonCode,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.black54,
+                      Text(
+                        SharedPrefsValues.deliveryPersonCode,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.black54,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
 
@@ -154,11 +163,25 @@ class _NavBarState extends State<NavBar> {
           ),
           const Divider(),
           ListTile(
-            leading: const Icon(Icons.question_answer_rounded, color: Colors.green),
+            leading: const Icon(Icons.bike_scooter_sharp, color: Colors.green),
             title: const Text('Vehicle Registration'),
             onTap: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => VehicleRegistrationForm()));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => VehicleRegistrationForm()));
+            },
+          ),
+
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.access_alarm, color: Colors.green),
+            title: const Text('Latest Update'),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => LatestEventUpdateUI()));
             },
           ),
 
@@ -169,7 +192,10 @@ class _NavBarState extends State<NavBar> {
             onTap: () async {
               final prefs = await SharedPreferences.getInstance();
               await prefs.clear();
-              Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context) => const SignIn()),(Route<dynamic> route) => false );
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SignIn()),
+                  (Route<dynamic> route) => false);
             },
           ),
         ],

@@ -26,7 +26,7 @@ class NewOrderScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text("New Order Alert"),
+          title: Text("New Order Alert!!"),
           centerTitle: true,
           automaticallyImplyLeading: false,
           backgroundColor: Colors.green.shade100,

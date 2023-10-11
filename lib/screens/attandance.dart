@@ -8,6 +8,7 @@ import 'package:delivery/models/cls_delivery_break_in.dart';
 import 'package:delivery/models/cls_delivery_break_off.dart';
 import 'package:delivery/models/cls_delivery_in.dart';
 import 'package:delivery/models/cls_delivery_off.dart';
+import 'package:delivery/screens/CommonWidgets/customTextView.dart';
 import 'package:delivery/screens/CommonWidgets/user_enabled_bottom_message.dart';
 import 'package:delivery/screens/order_screen/google_map_customer_roadmap.dart';
 import 'package:delivery/screens/order_screen/order_status_screen.dart';
@@ -30,9 +31,13 @@ class Attandance extends StatefulWidget {
 }
 
 class _AttandanceState extends State<Attandance> {
-
-
+  String greeting() => DateTime.now().hour < 12
+      ? 'Morning'
+      : DateTime.now().hour < 17
+          ? 'Afternoon'
+          : 'Evening';
   bool applyBreak = false;
+
   String formatTime(DateTime time) {
     return DateFormat('hh:mm:ss a').format(time);
   }
@@ -175,29 +180,37 @@ class _AttandanceState extends State<Attandance> {
             ),
             child: IconButton(
             icon:Icon(Icons.notifications),
-            onPressed: () {
-              setState(() {
-                notificationCount = 0;
-              });
-            },
-          ),
+              onPressed: () {
+                setState(() {
+                  notificationCount = 0;
+                });
+              },
+            ),
           )
         ],
       ),
       drawer: const NavBar(),
-      body: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 40),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: SizedBox(
-              width: 150,
-              height: 150,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
+      body: Stack(
+          fit: StackFit.expand,
+          // Make the Stack expand to fill the available space
+          children: [
+            Image.asset('assets/images/transparent_background.jpg',
+                fit: BoxFit.cover),
+            Column(
+              children: [
+                Text('Good ${greeting()}, ${SharedPrefsValues.name} !',
+                    style: TextStyle(fontSize: 24)),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 40),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: SizedBox(
+                    width: 150,
+                    height: 150,
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
                   Container(
                     width: 150,
                     height: 150,
@@ -256,9 +269,9 @@ class _AttandanceState extends State<Attandance> {
                 ),
               ),
 
-
               const Divider(),
-              ListTile(
+
+                    ListTile(
                 //title: const Text("Login/Start your Day:"),
                 title: ElevatedButton(
                   onPressed: () async {
@@ -406,57 +419,29 @@ class _AttandanceState extends State<Attandance> {
                         item[0],
                         style: Theme.of(context).textTheme.caption,
                       )
-                    ],
-                  );
-                }).toList(),
-              ),
-              const Divider(),
-              Container(
-                padding: EdgeInsets.all(50.0),
-                width: MediaQuery.of(context).size.width-10,
-                height:200,
-                decoration: BoxDecoration(
-                    // gradient: LinearGradient(
-                    //       begin: Alignment.bottomCenter,
-                    //       end: Alignment.topCenter,
-                    //       colors: [Color(0xff0043ba), Color(0xff006df1)]),
-                  // color: Colors.red,
-                  borderRadius:BorderRadius.only(
-                    topLeft: Radius.circular(80),
-                    bottomLeft: Radius.circular(80),
-                    bottomRight: Radius.circular(80),
-                    topRight: Radius.circular(80),
-                  )
+                          ],
+                        );
+                      }).toList(),
+                    ),
+                  ],
                 ),
-                  child:Column(
-                crossAxisAlignment:CrossAxisAlignment.start,
-                    children: [
-
-                    ],
-                )
-              )
-            ],
-          ),
-
-        ],
-      ),
-      bottomNavigationBar:SafeArea(
-
+              ],
+            ),
+          ]),
+      bottomNavigationBar: SafeArea(
         child: Container(
-
-        padding: EdgeInsets.all(12),
-          margin:EdgeInsets.symmetric(horizontal: 24),
-          decoration: BoxDecoration(
-            color:Colors.grey,
-                borderRadius: BorderRadius.all(Radius.circular(24))
-          ),
-          child:Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children:[
-              SizedBox(
-                  height:36,
-                  width:36,
-              child: GestureDetector(
+            padding: EdgeInsets.all(10),
+            //margin:EdgeInsets.symmetric(horizontal: 24,vertical: 50),
+            decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.all(Radius.circular(24))),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    height: 36,
+                    width: 36,
+                    child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -465,9 +450,9 @@ class _AttandanceState extends State<Attandance> {
                   );
                 },
                 child: RiveAnimation.asset(
-                  "assets/animated-icon-set.riv",
-                  artboard: "HOME",
-                ),
+                        "assets/animated-icon-set.riv",
+                        artboard: "HOME",
+                      ),
               ),
              ),
               SizedBox(

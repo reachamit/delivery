@@ -20,17 +20,26 @@ class _UserProfileState extends State<UserProfile> {
     return  Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.red,
-          title: Center(
-            child: const Text('Partner Profile'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back), // You can change the icon as needed
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Attandance()),
+            );
+          },
+        ),
+        title: Center(
+          child: const Text('Partner Profile'),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications),
+            onPressed: () {
+              // Add logic for notifications
+            },
           ),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.notifications),
-              onPressed: () {
-                // Add logic for notifications
-              },
-            ),
-            IconButton(
+          IconButton(
               icon: Icon(Icons.home),
               onPressed: () {
                 Navigator.push(context,MaterialPageRoute(builder: (context) => Attandance()));

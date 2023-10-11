@@ -16,8 +16,8 @@ class CommonUtils {
     String? token = await _firebaseMessaging.getToken();
     print('FCM Token: $token');
     return token;
-
   }
+
 
   static Future<ApiResponse> get(String endpoint) async {
 

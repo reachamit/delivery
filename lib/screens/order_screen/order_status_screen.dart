@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:delivery/common_utility/global_shared_prefences.dart';
 import 'package:delivery/main.dart';
 import 'package:delivery/screens/attandance.dart';
@@ -35,64 +37,67 @@ class _OrderStatusState extends State<OrderStatus> {
                   padding: const EdgeInsets.all(0.0),
                   child: loginState
                       ? Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.blue, // Border color
-                        width: 2.0, // Border width
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)), // Border radius
-                    ),
-                    padding: EdgeInsets.all(2.0),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.circle,
-                          color: Colors.green,
-                          size: 18,
-                        ),
-                        SizedBox(width: 5),
-                        Text(
-                          "Online",
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue, // Border color
+                              width: 2.0, // Border width
+                            ),
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(10.0)), // Border radius
+                          ),
+                          padding: EdgeInsets.all(2.0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.circle,
+                                color: Colors.green,
+                                size: 18,
+                              ),
+                              SizedBox(width: 5),
+                              Text(
+                                "Online",
+                                style: TextStyle(
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue, // Border color
+                              width: 2.0, // Border width
+                            ),
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(10.0)), // Border radius
+                          ),
+                          padding: EdgeInsets.all(2.0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.circle,
+                                color: Colors.black,
+                                size: 18,
+                              ),
+                              SizedBox(width: 5),
+                              Text(
+                                "Offline",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  )
-                      :  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.blue, // Border color
-                        width: 2.0, // Border width
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)), // Border radius
-                    ),
-                    padding: EdgeInsets.all(2.0),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.circle,
-                          color: Colors.black,
-                          size: 18,
-                        ),
-                        SizedBox(width: 5),
-                        Text(
-                          "Offline",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                 ),
                 Center(
-                  child: Text('  Order Details',
+                  child: Text(
+                    '  Order Details',
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -102,31 +107,30 @@ class _OrderStatusState extends State<OrderStatus> {
                 )
               ],
             ),
-          centerTitle: true,
-          backgroundColor: Colors.red,
-
-          leading: IconButton(
-          icon: Icon(Icons.arrow_back), // You can change the icon as needed
-          onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => Attandance()),
-          );
-          },
-          ),
+            centerTitle: true,
+            backgroundColor: Colors.red,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back), // You can change the icon as needed
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Attandance()),
+                );
+              },
+            ),
             actions: <Widget>[
               badges.Badge(
                 onTap: () {},
                 position: badges.BadgePosition.topEnd(top: -8, end: 8),
-                showBadge: true,//notificationCount > 0,
+                showBadge: true,
+                //notificationCount > 0,
                 ignorePointer: false,
                 badgeContent: Text(
                   notificationCount.toString(),
                   style: TextStyle(color: Colors.white),
                 ),
                 child: IconButton(
-                  icon:Icon(Icons.notifications),
+                  icon: Icon(Icons.notifications),
                   onPressed: () {
                     setState(() {
                       notificationCount = 0;
@@ -137,19 +141,33 @@ class _OrderStatusState extends State<OrderStatus> {
               IconButton(
                 icon: Icon(Icons.home),
                 onPressed: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => Attandance()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Attandance()));
                 },
               ),
             ],
-
             bottom: TabBar(
               tabs: [
-                Tab(child: Text('Received', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white))),
-                Tab(child: Text('Order Picked', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white))),
-                Tab(child: Text('Delivered', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white))),
+                Tab(
+                    child: Text('Received',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.white))),
+                Tab(
+                    child: Text('Order Picked',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.white))),
+                Tab(
+                    child: Text('Delivered',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.white))),
               ],
-            )
-        ),
+            )),
         body: TabBarView(
           children: [
             OrderList(status: 'OrderReceived'),
@@ -157,15 +175,17 @@ class _OrderStatusState extends State<OrderStatus> {
             OrderList(status: 'Delivered'),
           ],
         ),
-        bottomSheet: SharedPrefsValues.isAccountActivated=='Y' ? null: BottomSheetWidget(),
+        bottomSheet: SharedPrefsValues.isAccountActivated == 'Y'
+            ? null
+            : BottomSheetWidget(),
       ),
     );
   }
 }
 
-
 class OrderList extends StatefulWidget {
   final String status;
+
   OrderList({required this.status});
 
   @override
@@ -176,12 +196,11 @@ class _OrderListState extends State<OrderList> {
   List<OrderDetail> _orders = [];
   late GoogleMapController mapController;
 
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
   }
+
   @override
   void initState() {
     super.initState();
@@ -191,20 +210,22 @@ class _OrderListState extends State<OrderList> {
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
+
   Future<void> fetchOrderDetails() async {
     try {
-      String required_status = widget.status=="Delivered"?"D": widget.status=="OrderPicked"?"P":"R";
-      final Map<String, dynamic> response = await ApiHelper.getDeliveryPersonOrders(required_status,SharedPrefsValues.deliveryPersonCode);
+      String required_status = widget.status == "Delivered" ? "D"
+          : widget.status == "OrderPicked"
+              ? "P": "R";
+      final dynamic response =
+          await ApiHelper.getDeliveryPersonOrders(
+              required_status, SharedPrefsValues.deliveryPersonCode);
       print(response);
       final isSuccess = response['Success'];
       if (isSuccess == 'Y') {
         setState(() {
-          final Map<String, dynamic> data = response['Data'];
-          if (data == null || data is! Map<String, dynamic>) {
-            throw Exception('Invalid response data format');
-          }
-          final OrderDetail order = OrderDetail.fromJson(data);
-          _orders.add(order);
+          final jsonList = response['Data'][0]['fn_get_delivered_orders_list'];
+          final List<dynamic> jsonData = json.decode(jsonList);
+          _orders = jsonData.map((jsonItem) => OrderDetail.fromJson(jsonItem)).toList();
         });
       }
     } catch (e) {
@@ -216,14 +237,39 @@ class _OrderListState extends State<OrderList> {
   @override
   Widget build(BuildContext context) {
 
-    final filteredOrders = _orders.toList();
-    // orders.where((order) => order.status == widget.status).toList();
-    DateTime? orderDateTime = filteredOrders.firstOrNull?.dateTime;
-    DateTime dateTimeToFormat = orderDateTime ?? DateTime.now();
-    return ListView.builder(
-      itemCount: filteredOrders.length,
+    // DateTime? orderDateTime = _orders.firstOrNull?.dateTime;
+    // DateTime dateTimeToFormat = orderDateTime ?? DateTime.now();
+    return _orders.isEmpty
+        ? Center(
+      // Display a custom card when there are no orders available
+      child: Card(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Row(
+            children: [
+              Icon(Icons.info_outline, color: Colors.blue),
+              Text(
+                '             No Orders Available',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    )
+        :ListView.builder(
+      itemCount: _orders.length,
       itemBuilder: (context, index) {
-        final order = filteredOrders[index];
+        final order = _orders[index];
+        print('Order Number: ${order.orderNumber}');
+        print('Customer Name: ${order.customername}');
+        print('Customer Email: ${order.customeremail}');
+        DateTime? orderDateTime = order.dateTime;
+        DateTime dateTimeToFormat = orderDateTime ?? DateTime.now();
         return Card(
           color: Colors.cyan[50],
           child: ListTile(
@@ -231,17 +277,21 @@ class _OrderListState extends State<OrderList> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(DateFormat('dd/MM/yyyy hh:mm a').format(dateTimeToFormat), style: TextStyle(fontSize: 12.0)),
+                Text(DateFormat('dd/MM/yyyy hh:mm a').format(dateTimeToFormat),
+                    style: TextStyle(fontSize: 12.0)),
                 Text('Name: ${order.customername}'),
                 Text('Mobile: ${order.orderNumber}'),
                 Text('Email: ${order.customeremail}'),
-                Text('Delivery Address: ${order.deliveryAddress}', style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
-                if (order.pickedUp == 'Y' )// && order.delivered != 'Y')
+                Text('Delivery Address: ${order.deliveryAddress}',
+                    style:
+                        TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
+                if (order.pickedUp == 'Y'&& order.delivered != 'Y')
                   GestureDetector(
                     onTap: () async {
                       print('Mark Order Delivered');
                       if (order.pickedUp == 'Y') {
-                        final Map<String, dynamic> profileDetailsMap = await ApiHelper().OrderDeliveredByDeliveryPerson(
+                        final Map<String, dynamic> profileDetailsMap =
+                            await ApiHelper().OrderDeliveredByDeliveryPerson(
                           order.orderNumber ?? '',
                           'D',
                         );
@@ -254,10 +304,11 @@ class _OrderListState extends State<OrderList> {
                             MaterialPageRoute(
                               builder: (context) => OrderStatus(),
                             ),
-                                (route) => false,
+                            (route) => false,
                           );
                         } else {
-                          String message = profileDetailsMap['Data']['ErrorMessage'];
+                          String message =
+                              profileDetailsMap['Data']['ErrorMessage'];
                           print(message);
                           // ignore: use_build_context_synchronously
                           CommonUtils.showSnackBar(
@@ -273,11 +324,13 @@ class _OrderListState extends State<OrderList> {
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(12.0),
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text('Mark Order Delivered',
+                          Text(
+                            'Mark Order Delivered',
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -289,11 +342,11 @@ class _OrderListState extends State<OrderList> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => GoogleMap_CustomerLocations(order: order),
+                        builder: (context) =>
+                            GoogleMap_CustomerLocations(order: order),
                       ),
                     );
                     //showLocationMapforOrderDialog(context, order);
-
                   },
                   child: Text('Show Map'),
                 ),
@@ -364,13 +417,15 @@ class _OrderListState extends State<OrderList> {
                 GoogleMap(
                   onMapCreated: _onMapCreated,
                   initialCameraPosition: CameraPosition(
-                    target: LatLng(order.delivery_latitude??0, order.delivery_latitude??0),
+                    target: LatLng(order.delivery_latitude ?? 0,
+                        order.delivery_latitude ?? 0),
                     zoom: 15.0,
                   ),
                   markers: <Marker>[
                     Marker(
                       markerId: MarkerId('current_location'),
-                      position: LatLng(order.delivery_latitude??0, order.delivery_latitude??0),
+                      position: LatLng(order.delivery_latitude ?? 0,
+                          order.delivery_latitude ?? 0),
                       icon: BitmapDescriptor.defaultMarker,
                     ),
                   ].toSet(),
@@ -390,7 +445,6 @@ class _OrderListState extends State<OrderList> {
                 if (_formKey.currentState!.validate()) {
                   String reason = reasonController.text;
 
-
                   //Navigator.of(context).pop();
                 }
               },
@@ -402,5 +456,4 @@ class _OrderListState extends State<OrderList> {
     );
 //-----
   }
-
 }

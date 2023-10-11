@@ -16,8 +16,8 @@ import '../screens/profile_screen/user_profile.dart';
 
 class ApiHelper
 {
-  //static const String apiUrl = 'http://orderherfood.com:8080/api';
-  static const String apiUrl = 'http://10.0.2.2:8080/api';
+  static const String apiUrl = 'http://orderherfood.com:8080/api';
+  //static const String apiUrl = 'http://10.0.2.2:8080/api';
 
   Future<Map<String, dynamic>> getWalletDetails(String delivery_person_code,String Password) async {
     final Map<String, dynamic> requestData = {
@@ -48,10 +48,13 @@ class ApiHelper
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(requestData),
     );
+    print('json.decode(response.body)');
+    print(response.statusCode);
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      throw Exception('Failed to load wallet details');
+      print(json.decode(response.body));
+      throw Exception('Failed to login');
     }
   }
   Future<Map<String, dynamic>> UpdateStatusOnlineDeliveryPerson(DeliveryPersonIN _deliveryperson) async {
@@ -67,7 +70,7 @@ class ApiHelper
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      print(json.decode(response.body));
+
       throw Exception('Failed to Login/Start The Day');
     }
   }
@@ -248,6 +251,7 @@ class ApiHelper
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
+
       throw Exception('Failed to update Status');
     }
 
@@ -311,7 +315,7 @@ class ApiHelper
     }
 
   }
-  static Future<Map<String, dynamic>> getDeliveryPersonOrders(String status_type, String deliveryPersonCode) async {
+  static Future<dynamic> getDeliveryPersonOrders(String status_type, String deliveryPersonCode) async {
     try {
       final Map<String, dynamic> requestData = {
         "status_type": status_type,
@@ -326,7 +330,7 @@ class ApiHelper
       );
 
       if (response.statusCode == 200) {
-        final Map<String, dynamic> jsonResponse = json.decode(response.body);
+        final dynamic jsonResponse = json.decode(response.body);
         return jsonResponse;
       } else {
         throw Exception('Failed to get delivery person orders');
